@@ -1,9 +1,8 @@
 package member;
 import java.util.*;
-public class MemberVO{
+public class MemberVO implements MemberPro{
 	public void insert() {
 		Scanner in = new Scanner(System.in);
-		
 	}
 	public void lookup() {
 		
