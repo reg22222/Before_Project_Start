@@ -1,24 +1,24 @@
 package member;
 
 public class Member {
-	//¸â¹öÇÊµå
+	
 	private String name;
 	private String tel;
 	private String email;
-	//»ı¼ºÀÚ
+
 	public Member(String name, String tel, String email) {
 		this.name = name;
 		this.tel = tel;
 		this.email = email;
 	}
-	//setter¸Ş¼Òµå
+	
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	//getter¸Ş¼Òµå
+	
 	public String getName() {
 		return name;
 	}
@@ -28,10 +28,10 @@ public class Member {
 	public String getEmail() {
 		return email;
 	}
-	//ÀÏ¹İ¸Ş¼Òµå
+	
 	public void disp() {
-		System.out.println("ÀÌ¸§ : " + name + 
-			" , ÀüÈ­¹øÈ£ : " + tel + " , ÀÌ¸ŞÀÏÁÖ¼Ò : "+ email);
+		System.out.println("ì´ë¦„ : " + name + 
+			" , ì „í™”ë²ˆí˜¸ : " + tel + " , ì´ë©”ì¼ì£¼ì†Œ : "+ email);
 	}
 }	
 
