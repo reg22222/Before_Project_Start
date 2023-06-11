@@ -104,6 +104,17 @@ public class StudentProImpl implements StudentPro {
 	@Override
 	public void save() {
 		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			
+			oos.writeObject(list);
+			oos.close();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		/*
+		try {
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pw = new PrintWriter(bw);
@@ -117,10 +128,23 @@ public class StudentProImpl implements StudentPro {
 		}catch(IOException e) {
 			System.err.println(e.getMessage());
 		}
-		
+		*/
 	}
 	@Override
 	public void load() {
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			list = (List)ois.readObject();
+			System.out.println("파일 업로드 끝!!");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		/*
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
@@ -138,7 +162,7 @@ public class StudentProImpl implements StudentPro {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		
+		*/
 	}
 }
 
