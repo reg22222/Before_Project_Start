@@ -1,11 +1,13 @@
 package student;
 
+import java.io.*;
 import java.util.*;
 
 public class StudentProImpl implements StudentPro {
 	private List<Student> list = new ArrayList<>();
 	private Scanner in = new Scanner(System.in);
-	
+	private File dir = new File("G:\\javaweb\\study\\test1\\src\\student");
+	private File file = new File(dir, "data.txt");
 	protected String inputStr(String title) {
 		System.out.print(title+"을 입력 : ");
 		String str = in.next();
@@ -98,6 +100,45 @@ public class StudentProImpl implements StudentPro {
 	public void exit() {
 		System.out.println("프로그램을 종료합니다.");
 		System.exit(0);
+	}
+	@Override
+	public void save() {
+		try {
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter pw = new PrintWriter(bw);
+			
+			for(Student save : list) {
+				pw.println(save.getName()+"@"
+							+save.getKor()+"@"+save.getEng());
+				pw.flush();
+			}
+			pw.close();
+		}catch(IOException e) {
+			System.err.println(e.getMessage());
+		}
+		
+	}
+	@Override
+	public void load() {
+		try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			list.clear();
+			
+			while(true) {
+				String data = br.readLine();
+				Scanner sc = new Scanner(data).useDelimiter("\\s*@\\s*");
+				String name = sc.next();
+				int kor = sc.nextInt();
+				int eng = sc.nextInt();
+				Student st = new Student(name, kor, eng);
+				list.add(st);
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
 
